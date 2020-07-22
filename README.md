@@ -601,4 +601,72 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 ```
+## WorkManager 调度任务 
+
+使用 WorkManager API 可以轻松地调度即使在应用退出或设备重启时仍应运行的可延迟异步任务。
+
+**主要功能**：
+
+- 最高向后兼容到 API 14
+  - 在运行 API 23 及以上级别的设备上使用 JobScheduler
+  - 在运行 API 14-22 的设备上结合使用 BroadcastReceiver 和 AlarmManager
+- 添加网络可用性或充电状态等工作约束
+- 调度一次性或周期性异步任务
+- 监控和管理计划任务
+- 将任务链接起来
+- 确保任务执行，即使应用或设备重启也同样执行任务
+- 遵循低电耗模式等省电功能
+
+WorkManager 旨在用于**可延迟**运行（即不需要立即运行）并且在应用退出或设备重启时必须能够**可靠运行**的任务。例如：
+
+- 向后端服务发送日志或分析数据
+- 定期将应用数据与服务器同步
+
+WorkManager 不适用于应用进程结束时能够安全终止的运行中后台工作，也不适用于需要立即执行的任务。请查看[后台处理指南](https://developer.android.google.cn/guide/background)，了解哪种解决方案符合您的需求。
+
+### WorkManger基本用法
+
+#### 添加依赖
+
+```groovy
+def work_version = "2.3.4"
+
+        // (Java only)
+        implementation "androidx.work:work-runtime:$work_version"
+
+        // Kotlin + coroutines
+        implementation "androidx.work:work-runtime-ktx:$work_version"
+
+        // optional - RxJava2 support
+        implementation "androidx.work:work-rxjava2:$work_version"
+
+        // optional - GCMNetworkManager support
+        implementation "androidx.work:work-gcm:$work_version"
+
+        // optional - Test helpers
+        androidTestImplementation "androidx.work:work-testing:$work_version"
+```
+
+#### 创建后台任务
+
+```kotlin
+class SimpleWorker(context: Context,params: WorkerParameters): Worker(context,params) {
+    override fun doWork(): Result {
+        //耗时操作
+        Log.d("SimpleWorker", "doWork: do work in SimpleWorker")
+        return Result.success()
+    }
+}
+```
+
+```kotlin
+button.setOnClickListener {
+            val request=OneTimeWorkRequest.Builder(SimpleWorker::class.java)
+                .setInitialDelay(5,TimeUnit.MINUTES)//设置5分钟后运行
+                .addTag("simple")//添加请求标签，
+                .build()
+            WorkManager.getInstance(this).enqueue(request)
+        }
+```
+
 
