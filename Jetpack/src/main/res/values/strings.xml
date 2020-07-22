@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Jetpack</string>
+
+    <string name="pulus_one">Pulus One</string>
+    <string name="jishi">计时</string>
+    <string name="delete">delete</string>
+    <string name="update">update</string>
+    <string name="query_data">query Data</string>
+    <string name="add">add</string>
+</resources>

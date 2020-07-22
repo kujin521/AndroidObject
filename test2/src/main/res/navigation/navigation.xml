@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navHostFragment2">
+
+
+    <fragment
+        android:id="@+id/navHostFragment2"
+        android:name="com.kj.test2.ui.fragment.NavHostFragment"
+        android:label="fragment_navhost"
+        tools:layout="@layout/fragment_navhost" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.kj.test2.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+</Navigation>

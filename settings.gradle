@@ -1,0 +1,5 @@
+include ':Jetpack'
+include ':test2'
+include ':app:helloworld'
+include ':app'
+rootProject.name = "AndroidObject"
