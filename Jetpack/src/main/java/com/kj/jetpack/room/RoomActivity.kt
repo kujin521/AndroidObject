@@ -13,6 +13,7 @@ class RoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
 
+        //获取数据库实例
         val userDao= AppDatabase.getDatabase(this).userDao()
 
         addBtn.setOnClickListener {
