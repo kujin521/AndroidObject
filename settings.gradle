@@ -1,7 +1,13 @@
+include ':Retrofit_Test'
+include ':WebView_Test'
+include ':Network_Test'
 include ':jetpacktest2'
 include ':Jetpack'
 include ':test2'
 include ':app:helloworld'
 include ':app'
 project(':jetpacktest2').projectDir = new File(rootDir, 'JetpackTest/app/')
+project(':Network_Test').projectDir = new File(rootDir, 'NetworkTest/app/')
+project(':WebView_Test').projectDir = new File(rootDir, 'WebViewTest/app/')
+project(':Retrofit_Test').projectDir = new File(rootDir, 'RetrofitTest/app/')
 rootProject.name = "AndroidObject"
