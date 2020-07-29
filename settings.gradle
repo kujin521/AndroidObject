@@ -1,5 +1,7 @@
+include ':jetpacktest2'
 include ':Jetpack'
 include ':test2'
 include ':app:helloworld'
 include ':app'
+project(':jetpacktest2').projectDir = new File(rootDir, 'JetpackTest/app/')
 rootProject.name = "AndroidObject"
